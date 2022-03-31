@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
-
+const scoreEl = document.getElementById('scoreEl')
 canvas.width = innerWidth
 canvas.height = innerHeight
 
@@ -171,6 +171,8 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor((Math.random() * 500)+500)
 
+let score = 0
+
 function animate (){
     requestAnimationFrame(animate)
     const speed = 5
@@ -207,7 +209,10 @@ function animate (){
 
                         const projectileFound = projectiles.find(projectile2 => projectile2 === projectile)
 
-                        if (invaderFound && projectileFound){ 
+                        if (invaderFound && projectileFound){
+                        score += 100
+                        scoreEl.innerHTML = score
+
                         grid.invaders.splice(i, 1)
                         projectiles.splice(j, 1)
                         }
